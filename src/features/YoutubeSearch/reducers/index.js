@@ -2,14 +2,21 @@ import { handleActions } from "redux-actions";
 
 import { statuses } from "../../../constants";
 
-import { setVideos, setError, setQuery } from "../actions";
+import {
+  setVideos,
+  setError,
+  setQuery,
+  setNextPageToken,
+  setPrevPageToken,
+} from "../actions";
 
 const searchState = {
   videos: [],
   status: statuses.none,
-  // total: 0,
   error: "",
   query: "",
+  nextPageToken: "",
+  prevPageToken: "",
 };
 
 const search = handleActions(
@@ -27,6 +34,14 @@ const search = handleActions(
     [setQuery]: (state, { payload }) => ({
       ...state,
       query: payload,
+    }),
+    [setNextPageToken]: (state, { payload }) => ({
+      ...state,
+      nextPageToken: payload,
+    }),
+    [setPrevPageToken]: (state, { payload }) => ({
+      ...state,
+      prevPageToken: payload,
     }),
   },
   searchState

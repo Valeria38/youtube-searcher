@@ -3,3 +3,5 @@ export const statuses = {
   success: "success",
   error: "error",
 };
+
+export const ITEMS_PER_PAGE = 10;
