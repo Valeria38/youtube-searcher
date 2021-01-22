@@ -13,6 +13,10 @@ export const setPopularStatus = createAction("SET_MOST_POPULAR_STATUS");
 export const setPopularVideos = createAction("SET_MOST_POPULAR_VIDEOS");
 export const setPopularError = createAction("SET_MOST_POPULAR_ERROR");
 
+export const setVideo = createAction("SET_VIDEO");
+export const setVideoError = createAction("SET_VIDEO_ERROR");
+export const setVideoStatus = createAction("SET_VIDEO_STATUS");
+
 export const getVideos = (query, pageToken) => (dispatch) => {
   if (!query) {
     return;
@@ -28,7 +32,7 @@ export const getVideos = (query, pageToken) => (dispatch) => {
   fetch(`${process.env.REACT_APP_API_URL}search?${queryString}`)
     .then((res) => res.json())
     .then(({ items, nextPageToken, prevPageToken }) => {
-      console.log(nextPageToken, prevPageToken);
+      // console.log(nextPageToken, prevPageToken);
       dispatch(
         setCurrentVideos({
           videos: items,
@@ -72,5 +76,23 @@ export const getPopularVideos = (pageToken) => (dispatch) => {
     })
     .catch((err) => {
       setCurrentError(err);
+    });
+};
+
+export const getVideo = (id) => (dispatch) => {
+  dispatch(setVideoStatus(statuses.loading));
+  const queryString = getQueryString({
+    key: process.env.REACT_APP_API_KEY,
+    part: "snippet",
+    id,
+  });
+  fetch(`${process.env.REACT_APP_API_URL}videos?${queryString}`)
+    .then((res) => res.json())
+    .then(({ items }) => {
+      console.log("data[0]", items[0]);
+      dispatch(setVideo(items[0]));
+    })
+    .catch((err) => {
+      setVideoError(err);
     });
 };

@@ -1,5 +1,27 @@
-.video {
-  justify-self: center;
+@import "../../../../theme/colors.scss";
+@import "../../../../theme/breakpoints.scss";
+
+.video-wrapper {
   width: 100%;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.video {
   height: 300px;
+}
+
+.video--link {
+  width: max-content;
+  margin: 10px 0;
+  display: inline-block;
+  font-size: 16px;
+  color: $red;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: $darkRed;
+  }
 }

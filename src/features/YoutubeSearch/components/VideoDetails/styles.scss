@@ -1,0 +1,14 @@
+@import "../../../../theme/colors.scss";
+
+.video-details {
+  color: $white;
+}
+
+.video-details > div {
+  margin: 10px 0;
+}
+
+.video-details--tag {
+  margin-right: 10px;
+  color: $blue;
+}

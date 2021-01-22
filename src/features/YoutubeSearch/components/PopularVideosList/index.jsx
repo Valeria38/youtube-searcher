@@ -48,7 +48,7 @@ const PopularVideosList = () => {
     <>
       <div className="videos">
         {popularVideos.map((video, index) => (
-          <Video id={video.id} key={index} />
+          <Video withLink id={video.id} key={index} />
         ))}
       </div>
       <Pagination

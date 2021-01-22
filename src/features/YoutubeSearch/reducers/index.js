@@ -10,6 +10,9 @@ import {
   setPopularVideos,
   setPopularError,
   setPopularStatus,
+  setVideo,
+  setVideoError,
+  setVideoStatus,
 } from "../actions";
 
 const current = {
@@ -29,9 +32,15 @@ const mostPopular = {
   error: "",
 };
 
+const details = {
+  data: [],
+  status: statuses.none,
+};
+
 const searchState = {
   current,
   mostPopular,
+  details,
 };
 
 const search = handleActions(
@@ -97,6 +106,30 @@ const search = handleActions(
       mostPopular: {
         ...state.mostPopular,
         status: payload,
+      },
+    }),
+
+    [setVideo]: (state, { payload }) => ({
+      ...state,
+      details: {
+        ...state.details,
+        data: payload,
+        status: statuses.success,
+      },
+    }),
+    [setVideoStatus]: (state, { payload }) => ({
+      ...state,
+      details: {
+        ...state.details,
+        status: payload,
+      },
+    }),
+    [setVideoError]: (state, { payload }) => ({
+      ...state,
+      details: {
+        ...state.details,
+        error: payload,
+        status: statuses.error,
       },
     }),
   },

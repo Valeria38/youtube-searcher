@@ -2,6 +2,7 @@ import { createSelector } from "reselect";
 
 const search = (state) => state.search.current;
 const popular = (state) => state.search.mostPopular;
+const details = (state) => state.search.details;
 
 export const getStatus = createSelector(search, (state) => state.status);
 export const getVideos = createSelector(search, ({ videos }) => videos);
@@ -24,3 +25,5 @@ export const getPopularPrevPageToken = createSelector(
   popular,
   ({ prevPageToken }) => prevPageToken
 );
+
+export const getVideo = createSelector(details, ({ data }) => data);
