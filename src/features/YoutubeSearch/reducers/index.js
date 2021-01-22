@@ -3,45 +3,101 @@ import { handleActions } from "redux-actions";
 import { statuses } from "../../../constants";
 
 import {
-  setVideos,
-  setError,
+  setCurrentVideos,
+  setCurrentError,
   setQuery,
-  setNextPageToken,
-  setPrevPageToken,
+  setCurrentStatus,
+  setPopularVideos,
+  setPopularError,
+  setPopularStatus,
 } from "../actions";
 
-const searchState = {
+const current = {
+  query: "",
   videos: [],
   status: statuses.none,
-  error: "",
-  query: "",
   nextPageToken: "",
   prevPageToken: "",
+  error: "",
+};
+
+const mostPopular = {
+  videos: [],
+  status: statuses.none,
+  nextPageToken: "",
+  prevPageToken: "",
+  error: "",
+};
+
+const searchState = {
+  current,
+  mostPopular,
 };
 
 const search = handleActions(
   {
-    [setVideos]: (state, { payload }) => ({
+    [setCurrentVideos]: (
+      state,
+      { payload: { videos, nextPageToken, prevPageToken } }
+    ) => ({
       ...state,
-      videos: payload,
-      status: statuses.success,
+      current: {
+        ...state.current,
+        videos,
+        nextPageToken,
+        prevPageToken,
+        status: statuses.success,
+      },
     }),
-    [setError]: (state, { payload }) => ({
+    [setCurrentError]: (state, { payload }) => ({
       ...state,
-      error: payload,
-      status: statuses.error,
+      current: {
+        ...state.current,
+        error: payload,
+        status: statuses.error,
+      },
+    }),
+    [setCurrentStatus]: (state, { payload }) => ({
+      ...state,
+      current: {
+        ...state.current,
+        status: payload,
+      },
     }),
     [setQuery]: (state, { payload }) => ({
       ...state,
-      query: payload,
+      current: {
+        ...state.current,
+        query: payload,
+      },
     }),
-    [setNextPageToken]: (state, { payload }) => ({
+    [setPopularVideos]: (
+      state,
+      { payload: { videos, nextPageToken, prevPageToken } }
+    ) => ({
       ...state,
-      nextPageToken: payload,
+      mostPopular: {
+        ...state.mostPopular,
+        videos,
+        nextPageToken,
+        prevPageToken,
+        status: statuses.success,
+      },
     }),
-    [setPrevPageToken]: (state, { payload }) => ({
+    [setPopularError]: (state, { payload }) => ({
       ...state,
-      prevPageToken: payload,
+      mostPopular: {
+        ...state.mostPopular,
+        error: payload,
+        status: statuses.error,
+      },
+    }),
+    [setPopularStatus]: (state, { payload }) => ({
+      ...state,
+      mostPopular: {
+        ...state.mostPopular,
+        status: payload,
+      },
     }),
   },
   searchState

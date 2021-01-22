@@ -20,8 +20,8 @@ const VideosList = () => {
 
   return (
     <div className="videos">
-      {videos.map((video) => (
-        <Video id={video.id.videoId} key={video.id.videoId} />
+      {videos.map((video, index) => (
+        <Video id={video.id.videoId} key={index} />
       ))}
     </div>
   );
