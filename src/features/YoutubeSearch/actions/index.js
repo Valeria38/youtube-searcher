@@ -83,7 +83,7 @@ export const getVideo = (id) => (dispatch) => {
   dispatch(setVideoStatus(statuses.loading));
   const queryString = getQueryString({
     key: process.env.REACT_APP_API_KEY,
-    part: "snippet",
+    part: "snippet,statistics",
     id,
   });
   fetch(`${process.env.REACT_APP_API_URL}videos?${queryString}`)

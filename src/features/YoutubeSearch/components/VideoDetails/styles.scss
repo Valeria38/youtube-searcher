@@ -1,14 +1,32 @@
 @import "../../../../theme/colors.scss";
+@import "../../../../theme/breakpoints.scss";
 
 .video-details {
-  color: $white;
-}
+  min-height: 100vh;
+  display: grid;
+  grid-gap: 20px;
+  padding: 20px;
+  color: $gray;
+  background: linear-gradient(to bottom, $white 50%, $black 50%);
 
-.video-details > div {
-  margin: 10px 0;
+  @media (min-width: $lg) {
+    grid-template-columns: 2fr 2.5fr;
+    align-items: center;
+  }
 }
 
 .video-details--tag {
   margin-right: 10px;
   color: $blue;
+}
+
+.video-details--title {
+  font-size: 16px;
+  color: $red;
+}
+
+.video-details--title,
+.video-details--likes,
+.video-details--info {
+  margin-bottom: 15px;
 }

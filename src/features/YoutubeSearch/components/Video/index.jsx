@@ -12,9 +12,10 @@ const Video = ({ id, customStyles, withLink = false }) => {
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
+        title={id}
       ></iframe>
       {withLink && (
-        <Link className="video--link" to={`/videos/video/${id}`}>
+        <Link className="video--link" to={`/videos/${id}`}>
           Go to details page
         </Link>
       )}

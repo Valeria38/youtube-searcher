@@ -8,31 +8,55 @@ import { getVideo } from "../../actions";
 
 import { getVideo as getVideoSelector } from "../../selectors";
 
-import "./styles.scss";
+import { formatDate } from "../../../../helpers/formatDate";
 
-const styles = {
-  width: "550px",
-};
+import { ReactComponent as Like } from "../../../../images/like.svg";
+import { ReactComponent as Dislike } from "../../../../images/dislike.svg";
+
+import "./styles.scss";
 
 const VideoDetails = () => {
   const dispatch = useDispatch();
   const { token } = useParams();
 
-  const { snippet } = useSelector(getVideoSelector);
+  const { snippet, statistics } = useSelector(getVideoSelector);
 
   useEffect(() => {
     dispatch(getVideo(token));
   }, []);
 
-  return snippet ? (
+  return snippet && statistics ? (
     <div className="video-details">
-      <Video id={token} customStyles={styles} />
-      <div>Channel:{snippet.channelTitle}</div>
-      <div>{snippet.title}</div>
-      <div>{snippet.description}</div>
-      {snippet.tags.map((tag) => (
-        <span className="video-details--tag">#{tag}</span>
-      ))}
+      <Video id={token} />
+      <div>
+        <div className="video-details--title">{snippet.title}</div>
+        <div>
+          <div className="video-details--likes">
+            <div>
+              <Like className="video-details--icon" />
+              {statistics.likeCount}
+            </div>
+            <div>
+              <Dislike className="video-details--icon" />
+              {statistics.dislikeCount}
+            </div>
+          </div>
+        </div>
+
+        <div className="video-details--info">{statistics.viewCount} views</div>
+        <div className="video-details--info">
+          {statistics.commentCount} comments
+        </div>
+
+        <div className="video-details--info">
+          {formatDate(snippet.publishedAt)}
+        </div>
+        {snippet.tags.map((tag) => (
+          <span className="video-details--tag" key={tag}>
+            #{tag}
+          </span>
+        ))}
+      </div>
     </div>
   ) : null;
 };

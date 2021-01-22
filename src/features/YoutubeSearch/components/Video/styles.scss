@@ -9,6 +9,7 @@
 }
 
 .video {
+  max-width: 540px;
   height: 300px;
 }
 
@@ -24,4 +25,17 @@
   &:hover {
     color: $darkRed;
   }
+}
+
+.video-details--icon {
+  width: 20px;
+  margin-right: 5px;
+}
+
+.video-details--likes {
+  margin-top: 10px;
+  width: 130px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }

@@ -5,6 +5,7 @@ import SearchInput from "./components/SearchInput";
 import VideosList from "./components/VideosList";
 import PopularVideosList from "./components/PopularVideosList";
 import VideoDetails from "./components/VideoDetails";
+import Container from "./components/Container";
 
 import { getQuery } from "./selectors";
 
@@ -12,19 +13,21 @@ const YoutubeSearch = () => {
   const query = useSelector(getQuery);
   return (
     <>
-      <Redirect to="/videos" />
       <Switch>
+        <Route exact path="/">
+          <Redirect to="/videos" />
+        </Route>
         <Route
           exact
           path="/videos"
           component={() => (
-            <>
+            <Container>
               <SearchInput />
               {query ? <VideosList /> : <PopularVideosList />}
-            </>
+            </Container>
           )}
         />
-        <Route exact path="/videos/video/:token" component={VideoDetails} />
+        <Route exact path="/videos/:token" component={VideoDetails} />
       </Switch>
     </>
   );
