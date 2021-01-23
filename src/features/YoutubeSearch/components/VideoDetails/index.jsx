@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import Video from "../Video";
+import LikeVideoButton from "../LikeVideoButton";
 
 import { getVideo } from "../../actions";
 
@@ -27,6 +28,7 @@ const VideoDetails = () => {
 
   return snippet && statistics ? (
     <div className="video-details">
+      <LikeVideoButton token={token} />
       <Video id={token} />
       <div>
         <div className="video-details--title">{snippet.title}</div>

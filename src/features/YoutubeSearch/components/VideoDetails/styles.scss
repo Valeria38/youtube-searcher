@@ -2,6 +2,7 @@
 @import "../../../../theme/breakpoints.scss";
 
 .video-details {
+  position: relative;
   min-height: 100vh;
   display: grid;
   grid-gap: 20px;
