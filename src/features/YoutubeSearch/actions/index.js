@@ -89,7 +89,6 @@ export const getVideo = (id) => (dispatch) => {
   fetch(`${process.env.REACT_APP_API_URL}videos?${queryString}`)
     .then((res) => res.json())
     .then(({ items }) => {
-      console.log("data[0]", items[0]);
       dispatch(setVideo(items[0]));
     })
     .catch((err) => {

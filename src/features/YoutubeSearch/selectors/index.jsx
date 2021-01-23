@@ -25,5 +25,7 @@ export const getPopularPrevPageToken = createSelector(
   popular,
   ({ prevPageToken }) => prevPageToken
 );
+export const getPopularStatus = createSelector(popular, ({ status }) => status);
 
 export const getVideo = createSelector(details, ({ data }) => data);
+export const getDetailsStatus = createSelector(details, ({ status }) => status);

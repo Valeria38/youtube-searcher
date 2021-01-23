@@ -6,12 +6,14 @@ import {
   getPopularVideos as getPopularVideosSelector,
   getPopularNextPageToken,
   getPopularPrevPageToken,
+  getPopularStatus,
 } from "../../selectors";
 
 import { getPopularVideos } from "../../actions";
 
 import Video from "../Video";
 import Pagination from "../Pagination";
+import StatusController from "../StatusController";
 
 // import usePagination from "../../../../hooks/usePagination";
 
@@ -23,6 +25,7 @@ const PopularVideosList = () => {
   const nextPageToken = useSelector(getPopularNextPageToken);
   const prevPageToken = useSelector(getPopularPrevPageToken);
   const popularVideos = useSelector(getPopularVideosSelector);
+  const status = useSelector(getPopularStatus);
 
   useEffect(() => {
     // if (!query) {
@@ -45,7 +48,7 @@ const PopularVideosList = () => {
   );
 
   return (
-    <>
+    <StatusController status={status}>
       <div className="videos">
         {popularVideos.map((video, index) => (
           <Video withLink id={video.id} key={index} />
@@ -57,7 +60,7 @@ const PopularVideosList = () => {
         onPrev={handlePrev}
         onNext={handleNext}
       />
-    </>
+    </StatusController>
   );
 };
 

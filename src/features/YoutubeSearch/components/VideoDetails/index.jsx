@@ -4,10 +4,14 @@ import { useParams } from "react-router-dom";
 
 import Video from "../Video";
 import LikeVideoButton from "../LikeVideoButton";
+import StatusController from "../StatusController";
 
 import { getVideo } from "../../actions";
 
-import { getVideo as getVideoSelector } from "../../selectors";
+import {
+  getVideo as getVideoSelector,
+  getDetailsStatus,
+} from "../../selectors";
 
 import { formatDate } from "../../../../helpers/formatDate";
 
@@ -20,6 +24,7 @@ const VideoDetails = () => {
   const dispatch = useDispatch();
   const { token } = useParams();
 
+  const status = useSelector(getDetailsStatus);
   const { snippet, statistics } = useSelector(getVideoSelector);
 
   useEffect(() => {
@@ -27,39 +32,43 @@ const VideoDetails = () => {
   }, []);
 
   return snippet && statistics ? (
-    <div className="video-details">
-      <LikeVideoButton token={token} />
-      <Video id={token} />
-      <div>
-        <div className="video-details--title">{snippet.title}</div>
+    <StatusController status={status}>
+      <div className="video-details">
+        <LikeVideoButton token={token} />
+        <Video id={token} />
         <div>
-          <div className="video-details--likes">
-            <div>
-              <Like className="video-details--icon" />
-              {statistics.likeCount}
-            </div>
-            <div>
-              <Dislike className="video-details--icon" />
-              {statistics.dislikeCount}
+          <div className="video-details--title">{snippet.title}</div>
+          <div>
+            <div className="video-details--likes">
+              <div>
+                <Like className="video-details--icon" />
+                {statistics.likeCount}
+              </div>
+              <div>
+                <Dislike className="video-details--icon" />
+                {statistics.dislikeCount}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="video-details--info">{statistics.viewCount} views</div>
-        <div className="video-details--info">
-          {statistics.commentCount} comments
-        </div>
+          <div className="video-details--info">
+            {statistics.viewCount} views
+          </div>
+          <div className="video-details--info">
+            {statistics.commentCount} comments
+          </div>
 
-        <div className="video-details--info">
-          {formatDate(snippet.publishedAt)}
+          <div className="video-details--info">
+            {formatDate(snippet.publishedAt)}
+          </div>
+          {snippet.tags.map((tag) => (
+            <span className="video-details--tag" key={tag}>
+              #{tag}
+            </span>
+          ))}
         </div>
-        {snippet.tags.map((tag) => (
-          <span className="video-details--tag" key={tag}>
-            #{tag}
-          </span>
-        ))}
       </div>
-    </div>
+    </StatusController>
   ) : null;
 };
 

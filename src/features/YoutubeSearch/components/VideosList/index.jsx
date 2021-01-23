@@ -6,12 +6,14 @@ import {
   getVideos as getVideosSelector,
   getNextPageToken,
   getPrevPageToken,
+  getStatus,
 } from "../../selectors";
 
 import { getVideos } from "../../actions";
 
 import Video from "../Video";
 import Pagination from "../Pagination";
+import StatusController from "../StatusController";
 
 import "./styles.scss";
 
@@ -21,6 +23,7 @@ const VideosList = () => {
   const videos = useSelector(getVideosSelector);
   const nextPageToken = useSelector(getNextPageToken);
   const prevPageToken = useSelector(getPrevPageToken);
+  const status = useSelector(getStatus);
 
   useEffect(() => {
     dispatch(getVideos(query));
@@ -41,7 +44,7 @@ const VideosList = () => {
   );
 
   return (
-    <>
+    <StatusController status={status}>
       <div className="videos">
         {videos.map((video, index) => (
           <Video withLink id={video.id.videoId} key={index} />
@@ -53,7 +56,7 @@ const VideosList = () => {
         onNext={handleNext}
         onPrev={handlePrev}
       />
-    </>
+    </StatusController>
   );
 };
 
