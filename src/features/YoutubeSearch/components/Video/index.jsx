@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./styles.scss";
 
 const Video = ({ id, customStyles, withLink = false }) => {
-  return (
+  return id ? (
     <div className="video-wrapper">
       <iframe
         className="video"
@@ -20,7 +20,7 @@ const Video = ({ id, customStyles, withLink = false }) => {
         </Link>
       )}
     </div>
-  );
+  ) : null;
 };
 
 export default Video;

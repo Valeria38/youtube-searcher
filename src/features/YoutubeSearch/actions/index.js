@@ -32,7 +32,10 @@ export const getVideos = (query, pageToken) => (dispatch) => {
   fetch(`${process.env.REACT_APP_API_URL}search?${queryString}`)
     .then((res) => res.json())
     .then(({ items, nextPageToken, prevPageToken }) => {
-      // console.log(nextPageToken, prevPageToken);
+      if (!items.length) {
+        dispatch(setCurrentStatus(statuses.empty));
+        return;
+      }
       dispatch(
         setCurrentVideos({
           videos: items,
@@ -40,9 +43,6 @@ export const getVideos = (query, pageToken) => (dispatch) => {
           prevPageToken: prevPageToken || "",
         })
       );
-      // if (!data.items.length) {
-      // dispatch(setStatus(statuses.empty));
-      // }
     })
     .catch((err) => {
       setCurrentError(err);
@@ -69,10 +69,6 @@ export const getPopularVideos = (pageToken) => (dispatch) => {
           prevPageToken: prevPageToken || "",
         })
       );
-
-      // if (!data.items.length) {
-      // dispatch(setStatus(statuses.empty));
-      // }
     })
     .catch((err) => {
       setCurrentError(err);

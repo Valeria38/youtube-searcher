@@ -6,11 +6,12 @@
   min-height: 100vh;
   display: grid;
   grid-gap: 20px;
-  padding: 20px;
+  padding: 70px 20px;
   color: $gray;
   background: linear-gradient(to bottom, $white 50%, $black 50%);
 
   @media (min-width: $lg) {
+    padding: 20px;
     grid-template-columns: 2fr 2.5fr;
     align-items: center;
   }
@@ -19,6 +20,11 @@
 .video-details--tag {
   margin-right: 10px;
   color: $blue;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .video-details--title {

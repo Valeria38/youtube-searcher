@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import Video from "../Video";
 import LikeVideoButton from "../LikeVideoButton";
 import StatusController from "../StatusController";
 
-import { getVideo } from "../../actions";
+import { getVideo, getVideos, setQuery } from "../../actions";
 
 import {
   getVideo as getVideoSelector,
@@ -30,6 +30,10 @@ const VideoDetails = () => {
   useEffect(() => {
     dispatch(getVideo(token));
   }, []);
+
+  const searchByTag = (tag) => {
+    dispatch(setQuery(tag));
+  };
 
   return snippet && statistics ? (
     <StatusController status={status}>
@@ -62,9 +66,14 @@ const VideoDetails = () => {
             {formatDate(snippet.publishedAt)}
           </div>
           {snippet.tags.map((tag) => (
-            <span className="video-details--tag" key={tag}>
-              #{tag}
-            </span>
+            <Link to="/" key={tag}>
+              <span
+                onClick={() => searchByTag(tag)}
+                className="video-details--tag"
+              >
+                #{tag}
+              </span>
+            </Link>
           ))}
         </div>
       </div>
