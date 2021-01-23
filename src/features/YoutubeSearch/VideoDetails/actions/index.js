@@ -18,9 +18,12 @@ export const getVideo = (id) => (dispatch) => {
   fetch(`${process.env.REACT_APP_API_URL}videos?${queryString}`)
     .then((res) => res.json())
     .then(({ items }) => {
+      if (!items.length) {
+        throw new Error("Invalid token");
+      }
       dispatch(setVideo(items[0]));
     })
     .catch((err) => {
-      setVideoError(err);
+      dispatch(setVideoError(err.message));
     });
 };

@@ -16,11 +16,29 @@
   color: $white;
 }
 
-.empty-icon {
+.empty-icon,
+.error-icon {
   width: 60px;
   height: 60px;
 
   path {
     fill: $red;
   }
+}
+
+.error {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: $red;
+}
+
+.error-link {
+  text-decoration: none;
+  color: $blue;
 }

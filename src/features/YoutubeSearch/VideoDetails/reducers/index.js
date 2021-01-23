@@ -7,6 +7,7 @@ import { setVideo, setVideoError, setVideoStatus } from "../actions";
 const detailsState = {
   data: [],
   status: statuses.none,
+  error: "",
 };
 
 const details = handleActions(
