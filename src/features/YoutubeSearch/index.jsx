@@ -6,10 +6,10 @@ import SearchVideos from "./components/SearchVideos";
 const YoutubeSearch = () => {
   return (
     <Switch>
-      <Route exact path="/">
+      {/* <Route exact path="/">
         <Redirect to="/videos" />
-      </Route>
-      <Route exact path="/videos" component={SearchVideos} />
+      </Route> */}
+      <Route exact path="/" component={SearchVideos} />
       <Route exact path="/videos/:token" component={VideoDetails} />
     </Switch>
   );
