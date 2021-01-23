@@ -1,7 +1,7 @@
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
-import VideoDetails from "./components/VideoDetails";
-import SearchVideos from "./components/SearchVideos";
+import VideoDetails from "./VideoDetails";
+import SearchVideos from "./SearchVideos";
 
 const YoutubeSearch = () => {
   return (

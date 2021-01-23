@@ -1,0 +1,26 @@
+@import "../../../theme/colors.scss";
+
+.status-controller {
+  position: relative;
+  min-height: calc(100vh - 70px);
+}
+
+.no-data {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $white;
+}
+
+.empty-icon {
+  width: 60px;
+  height: 60px;
+
+  path {
+    fill: $red;
+  }
+}

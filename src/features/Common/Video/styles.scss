@@ -1,0 +1,41 @@
+@import "../../../theme/colors.scss";
+@import "../../../theme/breakpoints.scss";
+
+.video-wrapper {
+  width: 100%;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.video {
+  max-width: 540px;
+  height: 300px;
+}
+
+.video--link {
+  width: max-content;
+  margin: 10px 0;
+  display: inline-block;
+  font-size: 16px;
+  color: $red;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: $darkRed;
+  }
+}
+
+.video-details--icon {
+  width: 20px;
+  margin-right: 5px;
+}
+
+.video-details--likes {
+  margin-top: 10px;
+  width: 130px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}

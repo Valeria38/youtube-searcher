@@ -1,0 +1,18 @@
+@import "../../../../../theme/breakpoints.scss";
+
+.videos {
+  display: grid;
+  grid-gap: 20px;
+
+  @media (min-width: $md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: $xl) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
